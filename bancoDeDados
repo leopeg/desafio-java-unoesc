@@ -1,7 +1,7 @@
 USE db_desafio_java;
 
 CREATE TABLE tb_pessoa(
-	id INT AUTO_INCREMENT NOT NULL,
+    id INT AUTO_INCREMENT NOT NULL,
     nome VARCHAR(100) NOT NULL,
     data_nascimento DATE NOT NULL,
     genero VARCHAR(20) NOT NULL,
@@ -11,8 +11,8 @@ CREATE TABLE tb_pessoa(
 );
 
 CREATE TABLE tb_formacao(
-	id INT AUTO_INCREMENT NOT NULL,
-	nomeCurso VARCHAR(100) NOT NULL,
+    id INT AUTO_INCREMENT NOT NULL,
+    nomeCurso VARCHAR(100) NOT NULL,
     instituicao VARCHAR(100) NOT NULL,
     nivelCurso VARCHAR(50) NOT NULL,
     dataFormacao DATE NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE tb_formacao(
 );
 
 CREATE TABLE tb_time(
-	id INT AUTO_INCREMENT NOT NULL,
+    id INT AUTO_INCREMENT NOT NULL,
     nome VARCHAR (50) NOT NULL,
     setor VARCHAR (50) NOT NULL,
     PRIMARY KEY (id)
