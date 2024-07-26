@@ -13,14 +13,14 @@ import br.edu.unoesc.repositories.TimeRepository;
 public class TimeService {
 
 	@Autowired
-	private TimeRepository pessoaRepository;
+	private TimeRepository timeRepository;
 	
 	public List<Time> findAll(){
-		return (List<Time>) pessoaRepository.findAll();
+		return (List<Time>) timeRepository.findAll();
 	}
 	
 	public Time findById(Long id) {
-		Optional<Time> obj = pessoaRepository.findById(id);
+		Optional<Time> obj = timeRepository.findById(id);
 		return obj.get();
 	}
 	
