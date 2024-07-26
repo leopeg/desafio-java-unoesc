@@ -7,8 +7,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,16 +22,30 @@ public class Pessoa implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id")
 	private Long id;
+	
+	@Column(name="nome")
 	private String nome;
+	
+	@Column(name="cpf")
 	private String cpf;
+	
+	@Column(name="telefone")
 	private String telefone;
+	
+	@Column(name="email")
 	private String email;
+	
+	@Column(name="dataNascimento")
 	private Instant dataNascimento;
 	
+	@Column(name="genero")
 	private List<String> genero = new ArrayList<String>(Arrays.asList
 															("Masculino", "Feminino", "Outros"));
 	
+	@JoinColumn(name="id")
 	private Time time;
 	
 	public Pessoa() {}

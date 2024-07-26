@@ -5,8 +5,12 @@ import java.time.Instant;
 import java.util.Objects;
 
 import br.edu.unoesc.entities.enums.NivelCurso;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,12 +20,23 @@ public class Formacao implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id")
 	private Long id;
+	
+	@Column(name="nomeCurso")
 	private String nomeCurso;
+	
+	@Column(name="instuticao")
 	private String instituicao;
+	
+	@Column(name="nivelCurso")
 	private Integer nivelCurso;
+	
+	@Column(name="dataFormacao")
 	private Instant dataFormacao;
 	
+	@JoinColumn(name="id")
 	private Pessoa pessoa;
 	
 	public Formacao() {}
