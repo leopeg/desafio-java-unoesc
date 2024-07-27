@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
+import br.edu.unoesc.entities.Formacao;
 import br.edu.unoesc.entities.Pessoa;
+import br.edu.unoesc.repositories.FormacaoRepository;
 import br.edu.unoesc.repositories.PessoaRepository;
 
 @Configuration
@@ -15,6 +17,9 @@ public class TestConfig implements CommandLineRunner{
 
 	@Autowired
 	private PessoaRepository pessoaRepository;
+	
+	@Autowired
+	private FormacaoRepository formacaoRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -30,5 +35,15 @@ public class TestConfig implements CommandLineRunner{
 		
 		pessoaRepository.saveAll(Arrays.asList(p1, p2, p3));
 		
+		Formacao f1 = new Formacao((long) 1, "Engenharia da computação", "UNOESC", 3, 
+												Instant.parse("2024-07-30T14:03:00Z"));
+		
+		Formacao f2 = new Formacao((long) 2, "Pedagogia", "UNOESC", 4, 
+				Instant.parse("2024-07-30T14:03:00Z"));
+		
+		Formacao f3 = new Formacao((long) 3, "Ciencia contabeis", "UNOESC", 6, 
+				Instant.parse("2024-07-30T14:03:00Z"));
+		
+		formacaoRepository.saveAll(Arrays.asList(f1, f2, f3));
 	}
 }

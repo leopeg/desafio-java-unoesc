@@ -7,6 +7,7 @@ import java.util.Objects;
 import org.springframework.context.annotation.Profile;
 
 import br.edu.unoesc.entities.enums.NivelCurso;
+import br.edu.unoesc.records.request.RequestFormacao;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -49,6 +50,14 @@ public class Formacao implements Serializable{
 		this.instituicao = instituicao;
 		this.nivelCurso = nivelCurso;
 		this.dataFormacao = dataFormacao;
+	}
+	
+	public Formacao(RequestFormacao data) {
+		this.id = data.id();
+		this.nomeCurso = data.nomeCurso();
+		this.instituicao = data.instituicao();
+		this.nivelCurso = data.nivelCurso() ;
+		this.dataFormacao = data.dataFormacao();
 	}
 
 	public String getNomeCurso() {

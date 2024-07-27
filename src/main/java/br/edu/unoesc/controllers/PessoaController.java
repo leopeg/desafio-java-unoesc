@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.unoesc.entities.Pessoa;
 import br.edu.unoesc.entities.enums.Genero;
+import br.edu.unoesc.records.delete.DeletePessoa;
 import br.edu.unoesc.records.request.RequestPessoa;
 import br.edu.unoesc.records.update.UpdatePessoa;
 import br.edu.unoesc.repositories.PessoaRepository;
@@ -49,6 +51,12 @@ public class PessoaController {
 		return ResponseEntity.ok().build();
 	}
 	
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity deletePessoa(@PathVariable Long id, @RequestBody DeletePessoa data) {
+		pessoaRepository.deleteById(id);
+		return ResponseEntity.ok().build();
+	}
+	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity updatePessoa(@PathVariable Long id, @RequestBody UpdatePessoa data) {
 		Optional<Pessoa> optionalPessoa = pessoaRepository.findById(id);
@@ -74,7 +82,6 @@ public class PessoaController {
 		}
 		
 		if(data.genero() != null) {
-			Genero genero;
 			Pessoa.setGenero(Genero.valueOf(data.genero()));
 		}
 		
