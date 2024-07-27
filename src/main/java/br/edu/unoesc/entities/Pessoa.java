@@ -120,6 +120,14 @@ public class Pessoa implements Serializable{
 	public Long getId() {
 		return id;
 	}
+	
+	public Time getTime() {
+		return time;
+	}
+
+	public void setTime(Time time) {
+		this.time = time;
+	}
 
 	@Override
 	public int hashCode() {

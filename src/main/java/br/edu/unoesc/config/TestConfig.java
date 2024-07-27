@@ -9,8 +9,10 @@ import org.springframework.context.annotation.Configuration;
 
 import br.edu.unoesc.entities.Formacao;
 import br.edu.unoesc.entities.Pessoa;
+import br.edu.unoesc.entities.Time;
 import br.edu.unoesc.repositories.FormacaoRepository;
 import br.edu.unoesc.repositories.PessoaRepository;
+import br.edu.unoesc.repositories.TimeRepository;
 
 @Configuration
 public class TestConfig implements CommandLineRunner{
@@ -20,6 +22,9 @@ public class TestConfig implements CommandLineRunner{
 	
 	@Autowired
 	private FormacaoRepository formacaoRepository;
+	
+	@Autowired
+	private TimeRepository timeRepository;
 	
 	public void run(String... args) throws Exception {
 		
@@ -44,5 +49,17 @@ public class TestConfig implements CommandLineRunner{
 				Instant.parse("2024-07-30T14:03:00Z"));
 		
 		formacaoRepository.saveAll(Arrays.asList(f1, f2, f3));
+		
+		Time t1 = new Time((long) 1, "Santos", "Futebol");
+		Time t2 = new Time((long) 2, "TI", "TI");
+		Time t3 = new Time((long) 3, "Papaleguas", "Desenho");
+		
+		timeRepository.saveAll(Arrays.asList(t1, t2, t3));
+		
+		p1.setTime(t1);
+		p2.setTime(t2);
+		p3.setTime(t3);
+		
+		pessoaRepository.saveAll(Arrays.asList(p1, p2,p3));
 	}
 }
