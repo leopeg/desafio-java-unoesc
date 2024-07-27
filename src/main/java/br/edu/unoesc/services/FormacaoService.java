@@ -13,14 +13,14 @@ import br.edu.unoesc.repositories.FormacaoRepository;
 public class FormacaoService {
 
 	@Autowired
-	private FormacaoRepository pessoaRepository;
+	private FormacaoRepository formacaoRepository;
 	
 	public List<Formacao> findAll(){
-		return (List<Formacao>) pessoaRepository.findAll();
+		return (List<Formacao>) formacaoRepository.findAll();
 	}
 	
 	public Formacao findById(Long id) {
-		Optional<Formacao> obj = pessoaRepository.findById(id);
+		Optional<Formacao> obj = formacaoRepository.findById(id);
 		return obj.get();
 	}
 	

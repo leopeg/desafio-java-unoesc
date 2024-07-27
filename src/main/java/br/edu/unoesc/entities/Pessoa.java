@@ -49,7 +49,8 @@ public class Pessoa implements Serializable{
 	
 	public Pessoa() {}
 
-	public Pessoa(Long id, String nome, String cpf, List<String> genero, String telefone, String email, Instant dataNascimento) {
+	public Pessoa(Long id, String nome, String cpf, List<String> genero, 
+					String telefone, String email, Instant dataNascimento) {
 		super();
 		this.id = id;
 		this.nome = nome;
