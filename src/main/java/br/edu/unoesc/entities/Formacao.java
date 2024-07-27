@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+import org.springframework.context.annotation.Profile;
+
 import br.edu.unoesc.entities.enums.NivelCurso;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,7 +22,6 @@ public class Formacao implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
 	private Long id;
 	
