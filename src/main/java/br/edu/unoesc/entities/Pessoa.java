@@ -2,15 +2,12 @@ package br.edu.unoesc.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
+import br.edu.unoesc.entities.enums.Genero;
+import br.edu.unoesc.records.request.RequestPessoa;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
@@ -41,15 +38,14 @@ public class Pessoa implements Serializable{
 	private Instant dataNascimento;
 	
 	@Column(name="genero")
-	private List<String> genero = new ArrayList<String>(Arrays.asList
-															("Masculino", "Feminino", "Outros"));
+	private Integer genero;
 	
 	@JoinColumn(name="id")
 	private Time time;
 	
 	public Pessoa() {}
 
-	public Pessoa(Long id, String nome, String cpf, List<String> genero, 
+	public Pessoa(Long id, String nome, String cpf, Integer genero, 
 					String telefone, String email, Instant dataNascimento) {
 		super();
 		this.id = id;
@@ -59,6 +55,16 @@ public class Pessoa implements Serializable{
 		this.telefone = telefone;
 		this.email = email;
 		this.dataNascimento = dataNascimento;
+	}
+	
+	public Pessoa(RequestPessoa data) {
+		this.id = data.id();
+		this.nome = data.nome();
+		this.cpf = data.cpf();
+		this.genero = data.genero();
+		this.telefone = data.telefone();
+		this.email = data.email();
+		this.dataNascimento = data.dataNascimento();
 	}
 
 	public String getNome() {
@@ -77,12 +83,14 @@ public class Pessoa implements Serializable{
 		this.cpf = cpf;
 	}
 
-	public List<String> getGenero() {
-		return genero;
+	public Genero getGenero() {
+		return Genero.valueOf(genero);
 	}
 
-	public void setGenero(List<String> genero) {
-		this.genero = genero;
+	public void setGenero(Genero genero) {
+		if(genero != null){
+			this.genero = genero.getCode();
+		}
 	}
 
 	public String getTelefone() {
