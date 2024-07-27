@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.edu.unoesc.entities.Formacao;
 import br.edu.unoesc.entities.Pessoa;
 import br.edu.unoesc.entities.enums.Genero;
 import br.edu.unoesc.records.delete.DeletePessoa;
@@ -54,7 +55,9 @@ public class PessoaController {
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity deletePessoa(@PathVariable Long id, @RequestBody DeletePessoa data) {
 		pessoaRepository.deleteById(id);
-		return ResponseEntity.ok().build();
+		List<Pessoa> list = pessoaService.findAll();
+		pessoaRepository.saveAll(list);
+		return ResponseEntity.ok("Formação deletada");
 	}
 	
 	@PutMapping(value = "/{id}")

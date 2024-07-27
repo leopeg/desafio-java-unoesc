@@ -1,5 +1,6 @@
 package br.edu.unoesc.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,7 +55,9 @@ public class FormacaoController {
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity deleteFormacao(@PathVariable Long id, @RequestBody DeleteFormacao data) {
 		formacaoRepository.deleteById(id);
-		return ResponseEntity.ok().build();
+		List<Formacao> list = formacaoService.findAll();
+		formacaoRepository.saveAll(list);
+		return ResponseEntity.ok("Formação deletada");
 	}
 	
 	@PutMapping(value = "/{id}")

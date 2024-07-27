@@ -21,7 +21,6 @@ public class TestConfig implements CommandLineRunner{
 	@Autowired
 	private FormacaoRepository formacaoRepository;
 	
-	@Override
 	public void run(String... args) throws Exception {
 		
 		Pessoa p1 = new Pessoa((long) 1, "Leo", "1200", 0,
