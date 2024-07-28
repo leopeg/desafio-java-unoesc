@@ -16,7 +16,7 @@ public class ConsistentCpfParameterValidator implements ConstraintValidator<CpfV
     public boolean isValid(String cpf, ConstraintValidatorContext context) {
         // Lógica de validação do CPF
         if (cpf == null || cpf.isEmpty()) {
-            return false; // Ou true, dependendo do que você deseja para campos nulos ou vazios
+            return false;
         }
 
         // Verifique se o CPF tem 11 dígitos e se é válido
