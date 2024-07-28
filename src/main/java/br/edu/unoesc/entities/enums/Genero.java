@@ -6,17 +6,17 @@ public enum Genero {
 	FEMININO(1),
 	OUTROS(2);
 	
-private int code;
+private Integer code;
 	
-	private Genero(int code) {
+	private Genero(Integer code) {
 		this.code = code;
 	}
 	
-	public int getCode() {
+	public Integer getCode() {
 		return code;
 	}
 	
-	public static Genero valueOf(int code) {
+	public static Genero valueOf(Integer code) {
 		for (Genero value : Genero.values()) {
 			if(value.getCode() == code) {
 				return value;

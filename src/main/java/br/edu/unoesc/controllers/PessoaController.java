@@ -45,7 +45,7 @@ public class PessoaController {
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@PostMapping
+	@PostMapping(value = "/cadastrarPessoa")
 	public ResponseEntity registerPessoa(@RequestBody RequestPessoa data) {
 		Pessoa pessoa = new Pessoa(data);
 		pessoaRepository.save(pessoa);
