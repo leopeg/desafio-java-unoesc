@@ -47,7 +47,7 @@ public class TimeController {
 	public ResponseEntity registerTime(@RequestBody RequestTime data) {
 		Time time = new Time(data);
 		timeRepository.save(time);
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok("Time cadastradO!");
 	}
 	
 	@DeleteMapping(value = "/{id}")
@@ -72,6 +72,6 @@ public class TimeController {
 
 		timeRepository.save(Time);
 		
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok("Time atualizado!");
 		}
 	}

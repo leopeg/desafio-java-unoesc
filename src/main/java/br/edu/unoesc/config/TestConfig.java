@@ -8,7 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import br.edu.unoesc.entities.Formacao;
-import br.edu.unoesc.entities.Pessoa;
 import br.edu.unoesc.entities.Time;
 import br.edu.unoesc.repositories.FormacaoRepository;
 import br.edu.unoesc.repositories.PessoaRepository;

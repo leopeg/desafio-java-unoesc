@@ -48,7 +48,7 @@ public class FormacaoController {
 	public ResponseEntity registerFormacao(@RequestBody RequestFormacao data) {
 		Formacao formacao = new Formacao(data);
 		formacaoRepository.save(formacao);
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok("Formação cadastrada!");
 	}
 	
 	@DeleteMapping(value = "/{id}")
@@ -56,7 +56,7 @@ public class FormacaoController {
 		formacaoRepository.deleteById(id);
 		List<Formacao> list = formacaoService.findAll();
 		formacaoRepository.saveAll(list);
-		return ResponseEntity.ok("Formação deletada");
+		return ResponseEntity.ok("Formação deletada!");
 	}
 	
 	@PutMapping(value = "/{id}")
@@ -81,6 +81,6 @@ public class FormacaoController {
 
 		formacaoRepository.save(Formacao);
 		
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok("Formação atualiazada!");
 		}
 	}

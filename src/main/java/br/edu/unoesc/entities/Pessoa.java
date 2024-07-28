@@ -12,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 
 @Entity
 @Table(name="tb_pessoa")
@@ -34,6 +35,7 @@ public class Pessoa implements Serializable{
 	private String telefone;
 	
 	@Column(name="email")
+	@Email
 	private String email;
 	
 	@Column(name="dataNascimento")

@@ -49,7 +49,7 @@ public class PessoaController {
 	public ResponseEntity registerPessoa(@RequestBody @Valid RequestPessoa data) {
 		Pessoa pessoa = new Pessoa(data);
 		pessoaRepository.save(pessoa);
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok("Pessoa cadastrada!");
 	}
 	
 	@DeleteMapping(value = "/{id}")
@@ -57,7 +57,7 @@ public class PessoaController {
 		pessoaRepository.deleteById(id);
 		List<Pessoa> list = pessoaService.findAll();
 		pessoaRepository.saveAll(list);
-		return ResponseEntity.ok("Formação deletada");
+		return ResponseEntity.ok("Formação deletada!");
 	}
 	
 	@PutMapping(value = "/{id}")
@@ -90,6 +90,6 @@ public class PessoaController {
 		
 		pessoaRepository.save(Pessoa);
 		
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok("Pessoa atualiazada!");
 		}
 	}

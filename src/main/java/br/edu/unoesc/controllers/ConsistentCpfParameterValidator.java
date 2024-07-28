@@ -61,5 +61,4 @@ public class ConsistentCpfParameterValidator implements ConstraintValidator<CpfV
 
         return cpfDigits[10] == secondDigit;
     }
-	
 }
