@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.unoesc.entities.Formacao;
 import br.edu.unoesc.entities.Pessoa;
 import br.edu.unoesc.entities.enums.Genero;
 import br.edu.unoesc.records.delete.DeletePessoa;
@@ -22,6 +21,7 @@ import br.edu.unoesc.records.request.RequestPessoa;
 import br.edu.unoesc.records.update.UpdatePessoa;
 import br.edu.unoesc.repositories.PessoaRepository;
 import br.edu.unoesc.services.PessoaService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/pessoas")
@@ -46,7 +46,7 @@ public class PessoaController {
 	}
 	
 	@PostMapping(value = "/cadastrarPessoa")
-	public ResponseEntity registerPessoa(@RequestBody RequestPessoa data) {
+	public ResponseEntity registerPessoa(@RequestBody @Valid RequestPessoa data) {
 		Pessoa pessoa = new Pessoa(data);
 		pessoaRepository.save(pessoa);
 		return ResponseEntity.ok().build();
@@ -61,7 +61,7 @@ public class PessoaController {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity updatePessoa(@PathVariable Long id, @RequestBody UpdatePessoa data) {
+	public ResponseEntity updatePessoa(@PathVariable Long id, @RequestBody @Valid UpdatePessoa data) {
 		Optional<Pessoa> optionalPessoa = pessoaRepository.findById(id);
 		Pessoa Pessoa = optionalPessoa.get();
 		if(data.nome() != null) {

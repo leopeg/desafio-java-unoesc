@@ -28,7 +28,7 @@ public class TestConfig implements CommandLineRunner{
 	
 	public void run(String... args) throws Exception {
 		
-		Pessoa p1 = new Pessoa((long) 1, "Leo", "1200", 0,
+		/*Pessoa p1 = new Pessoa((long) 1, "Leo", "1200", 0,
 										"leopeg1301@gmail.com", "499904", Instant.parse("2024-07-17T02:26:00Z"));
 		
 		Pessoa p2 = new Pessoa((long) 2, "Gabi", "451122", 1,
@@ -37,7 +37,7 @@ public class TestConfig implements CommandLineRunner{
 		Pessoa p3 = new Pessoa((long) 3, "Rafa", "35663423", 2,
 				"rafapeg@gmail.com", "5784375", Instant.parse("1990-07-23T12:43:00Z"));
 		
-		pessoaRepository.saveAll(Arrays.asList(p1, p2, p3));
+		pessoaRepository.saveAll(Arrays.asList(p1, p2, p3));*/
 		
 		Formacao f1 = new Formacao((long) 1, "Engenharia da computação", "UNOESC", 3, 
 												Instant.parse("2024-07-30T14:03:00Z"));
@@ -56,10 +56,10 @@ public class TestConfig implements CommandLineRunner{
 		
 		timeRepository.saveAll(Arrays.asList(t1, t2, t3));
 		
-		p1.setTime(t1);
+		/*p1.setTime(t1);
 		p2.setTime(t2);
 		p3.setTime(t3);
 		
-		pessoaRepository.saveAll(Arrays.asList(p1, p2,p3));
+		pessoaRepository.saveAll(Arrays.asList(p1, p2,p3));*/
 	}
 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+import br.edu.unoesc.annotations.CpfValidator;
 import br.edu.unoesc.entities.enums.Genero;
 import br.edu.unoesc.records.request.RequestPessoa;
 import jakarta.persistence.Column;
@@ -26,6 +27,7 @@ public class Pessoa implements Serializable{
 	private String nome;
 	
 	@Column(name="cpf")
+	@CpfValidator
 	private String cpf;
 	
 	@Column(name="telefone")
