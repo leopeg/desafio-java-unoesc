@@ -88,7 +88,7 @@ public class PessoaController {
 		if(data.genero() != null) {
 			Pessoa.setGenero(Genero.valueOf(data.genero()));
 		}
-		
+
 		pessoaRepository.save(Pessoa);
 		
 		return ResponseEntity.ok("Pessoa atualiazada!");

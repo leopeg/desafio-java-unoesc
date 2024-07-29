@@ -1,17 +1,38 @@
 package br.edu.unoesc.controllers.api;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
-@RestController
+import br.edu.unoesc.entities.Pessoa;
+import br.edu.unoesc.entities.RandomFact;
+import br.edu.unoesc.repositories.PessoaRepository;
+
+@Controller
 public class RandomFacts {
 
-	@GetMapping(value = "/randomFacts")
-	public String getRandomFacts() {
+	@Autowired
+	private PessoaRepository pessoaRepository;
+	
+	@RequestMapping("/randomFacts")
+	public String getRandomFacts(Model model) {
 		String uri = "https://uselessfacts.jsph.pl/api/v2/facts/random";
 		RestTemplate restTemplate = new RestTemplate();
-		String result = restTemplate.getForObject(uri, String.class);
-		return result;
+		RandomFact randomFact = restTemplate.getForObject(uri, RandomFact.class);
+		
+		String textRandomFact = randomFact.getText();
+		
+		model.addAttribute("textRandomFact", textRandomFact);
+		model.addAttribute("pessoas", getPessoas());
+		
+		return "cards";
+	}
+	
+	private List<Pessoa> getPessoas(){
+		return (List<Pessoa>) pessoaRepository.findAll();
 	}
 }

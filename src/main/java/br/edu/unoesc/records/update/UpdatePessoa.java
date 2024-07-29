@@ -2,6 +2,7 @@ package br.edu.unoesc.records.update;
 
 import java.time.Instant;
 
+import br.edu.unoesc.entities.RandomFact;
 import br.edu.unoesc.entities.Time;
 
 public record UpdatePessoa(	String nome,
