@@ -5,8 +5,10 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -39,10 +41,9 @@ public class PessoaController {
 		return ResponseEntity.ok().body(list);
 	}
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<Pessoa> findById(@PathVariable Long id){
-		Pessoa obj = pessoaService.findById(id);
-		return ResponseEntity.ok().body(obj);
+	@ModelAttribute("pessoas")
+	public List<Pessoa> pessoas() {
+		return (List<Pessoa>) pessoaRepository.findAll();
 	}
 	
 	@PostMapping(value = "/cadastrarPessoa")
