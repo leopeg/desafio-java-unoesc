@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 public class RandomFacts {
 
 	@GetMapping(value = "/randomFacts")
-	private String getRandomFacts() {
+	public String getRandomFacts() {
 		String uri = "https://uselessfacts.jsph.pl/api/v2/facts/random";
 		RestTemplate restTemplate = new RestTemplate();
 		String result = restTemplate.getForObject(uri, String.class);
