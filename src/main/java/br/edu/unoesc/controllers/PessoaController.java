@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.unoesc.entities.Pessoa;
 import br.edu.unoesc.entities.enums.Genero;
-import br.edu.unoesc.records.delete.DeletePessoa;
 import br.edu.unoesc.records.request.RequestPessoa;
 import br.edu.unoesc.records.update.UpdatePessoa;
 import br.edu.unoesc.repositories.PessoaRepository;
@@ -43,7 +42,7 @@ public class PessoaController {
 	
 	@ModelAttribute("pessoas")
 	public List<Pessoa> pessoas() {
-		return (List<Pessoa>) pessoaRepository.findAll();
+		return (List<Pessoa>) pessoaService.findAll();
 	}
 	
 	@PostMapping
@@ -63,7 +62,7 @@ public class PessoaController {
 	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity updatePessoa(@PathVariable Long id, @RequestBody @Valid UpdatePessoa data) {
-		Optional<Pessoa> optionalPessoa = pessoaRepository.findById(id);
+		Optional<Pessoa> optionalPessoa = Optional.ofNullable(pessoaService.findById(id));
 		Pessoa Pessoa = optionalPessoa.get();
 		if(data.nome() != null) {
 			Pessoa.setNome(data.nome());

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.unoesc.entities.Formacao;
 import br.edu.unoesc.entities.enums.NivelCurso;
-import br.edu.unoesc.records.delete.DeleteFormacao;
 import br.edu.unoesc.records.request.RequestFormacao;
 import br.edu.unoesc.records.update.UpdateFormacao;
 import br.edu.unoesc.repositories.FormacaoRepository;
@@ -61,7 +60,7 @@ public class FormacaoController {
 	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity updateFormacao(@PathVariable Long id, @RequestBody UpdateFormacao data) {
-		Optional<Formacao> optionalFormacao = formacaoRepository.findById(id);
+		Optional<Formacao> optionalFormacao = Optional.ofNullable(formacaoService.findById(id));
 		Formacao Formacao = optionalFormacao.get();
 		if(data.nomeCurso() != null) {
 			Formacao.setNomeCurso(data.nomeCurso());

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.unoesc.entities.Time;
-import br.edu.unoesc.records.delete.DeleteTime;
 import br.edu.unoesc.records.request.RequestTime;
 import br.edu.unoesc.records.update.UpdateTime;
 import br.edu.unoesc.repositories.TimeRepository;
@@ -60,7 +59,7 @@ public class TimeController {
 	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity updateTime(@PathVariable Long id, @RequestBody UpdateTime data) {
-		Optional<Time> optionalTime = timeRepository.findById(id);
+		Optional<Time> optionalTime = Optional.ofNullable(timeService.findById(id));
 		Time Time = optionalTime.get();
 		if(data.nome() != null) {
 			Time.setNome(data.nome());

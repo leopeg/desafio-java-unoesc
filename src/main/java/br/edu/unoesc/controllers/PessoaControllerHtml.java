@@ -8,17 +8,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.edu.unoesc.entities.Pessoa;
-import br.edu.unoesc.repositories.PessoaRepository;
+import br.edu.unoesc.services.PessoaService;
 
 @Controller
 public class PessoaControllerHtml {
 
 	@Autowired
-	private PessoaRepository pessoaRepository;
+	private PessoaService pessoaService;
 	
 	@RequestMapping("/")
     public String registered(Model model) {
-        List<Pessoa> pessoas = (List<Pessoa>) pessoaRepository.findAll();
+        List<Pessoa> pessoas = (List<Pessoa>) pessoaService.findAll();
         model.addAttribute("pessoas", pessoas);
         return "cards";
     }

@@ -12,13 +12,13 @@ import org.springframework.web.client.RestTemplate;
 import br.edu.unoesc.entities.Pessoa;
 import br.edu.unoesc.entities.PessoaComFatoAleatorio;
 import br.edu.unoesc.entities.RandomFact;
-import br.edu.unoesc.repositories.PessoaRepository;
+import br.edu.unoesc.services.PessoaService;
 
 @Controller
 public class RandomFacts {
 
 	@Autowired
-	private PessoaRepository pessoaRepository;
+	private PessoaService pessoaService;
 	
 	@RequestMapping("/randomFacts")
 	public String getTextRandomFact(Model model) {
@@ -44,6 +44,6 @@ public class RandomFacts {
 	}
 	
 	private List<Pessoa> getPessoas(){
-		return (List<Pessoa>) pessoaRepository.findAll();
+		return (List<Pessoa>) pessoaService.findAll();
 	}
 }
