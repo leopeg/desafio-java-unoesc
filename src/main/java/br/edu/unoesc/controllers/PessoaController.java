@@ -46,7 +46,7 @@ public class PessoaController {
 		return (List<Pessoa>) pessoaRepository.findAll();
 	}
 	
-	@PostMapping(value = "/cadastrarPessoa")
+	@PostMapping
 	public ResponseEntity registerPessoa(@RequestBody @Valid RequestPessoa data) {
 		Pessoa pessoa = new Pessoa(data);
 		pessoaRepository.save(pessoa);
@@ -54,11 +54,11 @@ public class PessoaController {
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity deletePessoa(@PathVariable Long id, @RequestBody DeletePessoa data) {
+	public ResponseEntity deletePessoa(@PathVariable Long id) {
 		pessoaRepository.deleteById(id);
 		List<Pessoa> list = pessoaService.findAll();
 		pessoaRepository.saveAll(list);
-		return ResponseEntity.ok("Formação deletada!");
+		return ResponseEntity.ok("Pessoa deletada!");
 	}
 	
 	@PutMapping(value = "/{id}")
@@ -91,6 +91,6 @@ public class PessoaController {
 
 		pessoaRepository.save(Pessoa);
 		
-		return ResponseEntity.ok("Pessoa atualiazada!");
+		return ResponseEntity.ok("Pessoa atualizada!");
 		}
 	}

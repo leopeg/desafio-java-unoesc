@@ -47,15 +47,15 @@ public class TimeController {
 	public ResponseEntity registerTime(@RequestBody RequestTime data) {
 		Time time = new Time(data);
 		timeRepository.save(time);
-		return ResponseEntity.ok("Time cadastradO!");
+		return ResponseEntity.ok("Time cadastrado!");
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity deleteTime(@PathVariable Long id, @RequestBody DeleteTime data) {
+	public ResponseEntity deleteTime(@PathVariable Long id) {
 		timeRepository.deleteById(id);
 		List<Time> list = timeService.findAll();
 		timeRepository.saveAll(list);
-		return ResponseEntity.ok("Formação deletada");
+		return ResponseEntity.ok("Time deletado");
 	}
 	
 	@PutMapping(value = "/{id}")

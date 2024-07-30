@@ -52,7 +52,7 @@ public class FormacaoController {
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity deleteFormacao(@PathVariable Long id, @RequestBody DeleteFormacao data) {
+	public ResponseEntity deleteFormacao(@PathVariable Long id) {
 		formacaoRepository.deleteById(id);
 		List<Formacao> list = formacaoService.findAll();
 		formacaoRepository.saveAll(list);
