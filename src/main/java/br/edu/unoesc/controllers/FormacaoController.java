@@ -28,9 +28,6 @@ public class FormacaoController {
 	@Autowired
 	private FormacaoService formacaoService;
 	
-	@Autowired
-	private FormacaoRepository formacaoRepository;
-	
 	@GetMapping
 	public ResponseEntity<List<Formacao>> findAll(){
 		List<Formacao> list = formacaoService.findAll();
@@ -45,41 +42,19 @@ public class FormacaoController {
 	
 	@PostMapping
 	public ResponseEntity registerFormacao(@RequestBody RequestFormacao data) {
-		Formacao formacao = new Formacao(data);
-		formacaoRepository.save(formacao);
+		formacaoService.registerFormacao(data);
 		return ResponseEntity.ok("Formação cadastrada!");
 	}
 	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity deleteFormacao(@PathVariable Long id) {
-		formacaoRepository.deleteById(id);
-		List<Formacao> list = formacaoService.findAll();
-		formacaoRepository.saveAll(list);
+		formacaoService.deleteFormacao(id);
 		return ResponseEntity.ok("Formação deletada!");
 	}
 	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity updateFormacao(@PathVariable Long id, @RequestBody UpdateFormacao data) {
-		Optional<Formacao> optionalFormacao = Optional.ofNullable(formacaoService.findById(id));
-		Formacao Formacao = optionalFormacao.get();
-		if(data.nomeCurso() != null) {
-			Formacao.setNomeCurso(data.nomeCurso());
-		}
-		
-		if(data.instituicao() != null) {
-			Formacao.setInstituicao(data.instituicao());
-		}
-
-		if(data.nivelCurso() != null) {
-			Formacao.setNivelCurso(NivelCurso.valueOf(data.nivelCurso()));
-		}
-		
-		if(data.dataFormacao() != null) {
-			Formacao.setDataFormacao(data.dataFormacao());
-		}
-
-		formacaoRepository.save(Formacao);
-		
+		formacaoService.updateFormacao(data, id);
 		return ResponseEntity.ok("Formação atualiazada!");
 		}
 	}

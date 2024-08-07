@@ -30,9 +30,6 @@ public class PessoaController {
 	@Autowired
 	private PessoaService pessoaService;
 	
-	@Autowired
-	private PessoaRepository pessoaRepository;
-	
 	@GetMapping
 	public ResponseEntity<List<Pessoa>> findAll(){
 		List<Pessoa> list = pessoaService.findAll();
@@ -46,49 +43,19 @@ public class PessoaController {
 	
 	@PostMapping
 	public ResponseEntity registerPessoa(@RequestBody @Valid RequestPessoa data) {
-		Pessoa pessoa = new Pessoa(data);
-		pessoaRepository.save(pessoa);
+		pessoaService.registerPessoa(data);
 		return ResponseEntity.ok("Pessoa cadastrada!");
 	}
 	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity deletePessoa(@PathVariable Long id) {
-		pessoaRepository.deleteById(id);
-		List<Pessoa> list = pessoaService.findAll();
-		pessoaRepository.saveAll(list);
+		pessoaService.deletePessoa(id);
 		return ResponseEntity.ok("Pessoa deletada!");
 	}
 	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity updatePessoa(@PathVariable Long id, @RequestBody @Valid UpdatePessoa data) {
-		Optional<Pessoa> optionalPessoa = Optional.ofNullable(pessoaService.findById(id));
-		Pessoa Pessoa = optionalPessoa.get();
-		if(data.nome() != null) {
-			Pessoa.setNome(data.nome());
-		}
-		
-		if(data.cpf() != null) {
-			Pessoa.setCpf(data.cpf());
-		}
-
-		if(data.telefone() != null) {
-			Pessoa.setTelefone(data.telefone());
-		}
-		
-		if(data.email() != null) {
-			Pessoa.setEmail(data.email());
-		}
-
-		if(data.dataNascimento() != null) {
-			Pessoa.setDataNascimento(data.dataNascimento());
-		}
-		
-		if(data.genero() != null) {
-			Pessoa.setGenero(Genero.valueOf(data.genero()));
-		}
-
-		pessoaRepository.save(Pessoa);
-		
+		pessoaService.updatePessoa(data, id);
 		return ResponseEntity.ok("Pessoa atualizada!");
 		}
 	}

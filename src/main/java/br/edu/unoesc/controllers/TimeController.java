@@ -27,9 +27,6 @@ public class TimeController {
 	@Autowired
 	private TimeService timeService;
 	
-	@Autowired
-	private TimeRepository timeRepository;
-	
 	@GetMapping
 	public ResponseEntity<List<Time>> findAll(){
 		List<Time> list = timeService.findAll();
@@ -44,33 +41,20 @@ public class TimeController {
 	
 	@PostMapping
 	public ResponseEntity registerTime(@RequestBody RequestTime data) {
-		Time time = new Time(data);
-		timeRepository.save(time);
+		timeService.registerTime(data);
 		return ResponseEntity.ok("Time cadastrado!");
 	}
 	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity deleteTime(@PathVariable Long id) {
-		timeRepository.deleteById(id);
-		List<Time> list = timeService.findAll();
-		timeRepository.saveAll(list);
+		timeService.deleteTime(id);
 		return ResponseEntity.ok("Time deletado");
 	}
 	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity updateTime(@PathVariable Long id, @RequestBody UpdateTime data) {
-		Optional<Time> optionalTime = Optional.ofNullable(timeService.findById(id));
-		Time Time = optionalTime.get();
-		if(data.nome() != null) {
-			Time.setNome(data.nome());
-		}
-		
-		if(data.setor() != null) {
-			Time.setSetor(data.setor());
-		}
-
-		timeRepository.save(Time);
-		
+		timeService.updateTime(data, id);
 		return ResponseEntity.ok("Time atualizado!");
 		}
-	}
+	
+}
