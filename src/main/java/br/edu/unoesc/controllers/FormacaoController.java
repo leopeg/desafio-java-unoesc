@@ -1,7 +1,6 @@
 package br.edu.unoesc.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.unoesc.entities.Formacao;
-import br.edu.unoesc.entities.enums.NivelCurso;
 import br.edu.unoesc.records.request.RequestFormacao;
 import br.edu.unoesc.records.update.UpdateFormacao;
-import br.edu.unoesc.repositories.FormacaoRepository;
 import br.edu.unoesc.services.FormacaoService;
 
 @RestController
