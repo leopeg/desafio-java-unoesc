@@ -12,7 +12,7 @@ Metodo POST:
 
 	- JSON para criar novo registro:
 		{
-			 "id":var Long
+		"id":var Long
 	        "nome": var String,
 	        "cpf": var String | CPF Válido,
 	        "telefone": var String,
