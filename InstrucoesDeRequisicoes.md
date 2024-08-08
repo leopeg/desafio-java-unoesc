@@ -12,13 +12,13 @@ Metodo POST:
 
 	- JSON para criar novo registro:
 		{
-		 "id":var Long
-        "nome": var String,
-        "cpf": var String | CPF Válido,
-        "telefone": var String,
-        "email": var String | E-mail com formatação válida,
-        "dataNascimento": var String no formato ISO 8601,
-        "genero": var Long
+			 "id":var Long
+	        "nome": var String,
+	        "cpf": var String | CPF Válido,
+	        "telefone": var String,
+	        "email": var String | E-mail com formatação válida,
+	        "dataNascimento": var String no formato ISO 8601,
+	        "genero": var Long
 		}
 		
 Metodo PUT:
@@ -29,12 +29,12 @@ Metodo PUT:
 				
 				- JSON para atualizar registro (Nenhuma váriavel é obrigatória):
 					{
-					        "nome": var String,
-					        "cpf": var String | CPF Válido,
-					        "telefone": var String,
-					        "email": var String | E-mail com formatação válida,
-					        "dataNascimento": var String no formato ISO 8601,
-					        "genero": var Long
+				        "nome": var String,
+				        "cpf": var String | CPF Válido,
+				        "telefone": var String,
+				        "email": var String | E-mail com formatação válida,
+				        "dataNascimento": var String no formato ISO 8601,
+				        "genero": var Long
 					}
 					
 Metodo DELETE:
